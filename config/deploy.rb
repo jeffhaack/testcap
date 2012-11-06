@@ -33,6 +33,11 @@ set :use_sudo, false
 set :deploy_via, :copy
 set :copy_strategy, :export
 
+set :default_environment, {
+  'PATH' => "/bin/sh"
+}
+
+
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
