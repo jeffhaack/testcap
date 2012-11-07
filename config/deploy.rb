@@ -1,5 +1,12 @@
 require 'bundler/capistrano'
 
+set :default_environment, {
+    'PATH' => "/usr/local/bin:/bin:/usr/bin:/bin:/usr/local/rvm/gems/ruby-1.9.2-p320/bin:/usr/local/rvm/bin",
+    'GEM_HOME' => '/usr/local/rvm/rubies/ruby-1.9.2-p320/lib/ruby/gems/1.9.1',
+    'GEM_PATH' => '/usr/local/rvm/rubies/ruby-1.9.2-p320/lib/ruby/gems/1.9.1',
+    'BUNDLE_PATH' => '/usr/local/rvm/bin/bundle'  
+}
+
 set :application, "testcap"
 set :repository,  "git@github.com:jeffhaack/testcap.git"
 set :scm, :git
@@ -33,12 +40,10 @@ set :use_sudo, false
 set :deploy_via, :copy
 set :copy_strategy, :export
 
-set :default_environment, {
-  'PATH' => "/bin/sh"
-}
 
 
 namespace :deploy do
+
   task :start do ; end
   task :stop do ; end
   desc "Restart the application"
