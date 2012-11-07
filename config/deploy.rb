@@ -41,9 +41,7 @@ set :deploy_via, :copy
 set :copy_strategy, :export
 
 
-
 namespace :deploy do
-
   task :start do ; end
   task :stop do ; end
   desc "Restart the application"

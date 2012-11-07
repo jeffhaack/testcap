@@ -1,4 +1,6 @@
 Testcap::Application.routes.draw do
+  resources :books
+
   resources :articles
 
   # The priority is based upon order of creation:
