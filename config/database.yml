@@ -19,7 +19,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgis
+  encoding: unicode
+  schema_search_path: "public,postgis"
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
+  database: testcap_prod
   pool: 5
-  timeout: 5000
+  username: real_estate
+  password: pleh99
