@@ -1,4 +1,6 @@
 Testcap::Application.routes.draw do
+  resources :foods
+
   resources :books
 
   resources :articles
