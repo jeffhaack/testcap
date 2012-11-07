@@ -10,11 +10,13 @@ set :default_environment, {
 set :application, "testcap"
 set :repository,  "git@github.com:jeffhaack/testcap.git"
 set :scm, :git
+#set :my_host, "108.166.79.19"
+my_host = "108.166.95.229"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "108.166.79.19"                          # Your HTTP server, Apache/etc
-role :app, "108.166.79.19"                          # This may be the same as your `Web` server
-role :db,  "108.166.79.19", :primary => true # This is where Rails migrations will run
+role :web, my_host                          # Your HTTP server, Apache/etc
+role :app, my_host                          # This may be the same as your `Web` server
+role :db,  my_host, :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
@@ -55,11 +57,15 @@ namespace :deploy do
 
   task :cold do       # Overriding the default deploy:cold
     update
-    create_db         # Create the database
-    load_schema       # My own step, replacing migrations.
-    load_seeds        # Seed database
+    #create_db         # Create the database
+    #load_schema       # My own step, replacing migrations.
+    #load_seeds        # Seed database
     start
   end
+
+  task :migrate_db, :roles => :app do
+    run "cd #{current_path}; rake db:migrate RAILS_ENV=production"
+  end  
 
   task :create_db, :roles => :app do
     run "cd #{current_path}; rake db:create RAILS_ENV=production"

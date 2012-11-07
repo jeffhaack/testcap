@@ -134,6 +134,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   mysql2
+  pg
   rails (= 3.2.8)
   rvm-capistrano
   sass-rails (~> 3.2.3)
