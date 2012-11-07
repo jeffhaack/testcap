@@ -55,9 +55,14 @@ namespace :deploy do
 
   task :cold do       # Overriding the default deploy:cold
     update
+    create_db         # Create the database
     load_schema       # My own step, replacing migrations.
     load_seeds        # Seed database
     start
+  end
+
+  task :create_db, :roles => :app do
+    run "cd #{current_path}; rake db:create RAILS_ENV=production"
   end
 
   task :load_schema, :roles => :app do
