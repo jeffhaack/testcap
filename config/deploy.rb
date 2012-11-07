@@ -52,5 +52,25 @@ namespace :deploy do
   task :copy_in_database_yml do
     run "cp #{shared_path}/config/database.yml #{latest_release}/config/"
   end
+
+  task :cold do       # Overriding the default deploy:cold
+    update
+    load_schema       # My own step, replacing migrations.
+    load_seeds        # Seed database
+    start
+  end
+
+  task :load_schema, :roles => :app do
+    run "cd #{current_path}; rake db:schema:load RAILS_ENV=production"
+  end
+
+  task :load_seeds, :roles => :app do
+    run "cd #{current_path}; rake db:seed RAILS_ENV=production"
+  end
 end
 before "deploy:assets:precompile", "deploy:copy_in_database_yml"
+
+
+
+
+
