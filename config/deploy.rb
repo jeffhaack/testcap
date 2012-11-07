@@ -68,11 +68,11 @@ namespace :deploy do
   end  
 
   task :create_db, :roles => :app do
-    run "cd #{current_path}; rake db:create RAILS_ENV=production"
+    run "cd #{current_path}; bundle exec rake db:create RAILS_ENV=production"
   end
 
   task :load_schema, :roles => :app do
-    run "cd #{current_path}; rake db:schema:load RAILS_ENV=production"
+    run "cd #{current_path}; bundle exec rake db:schema:load RAILS_ENV=production"
   end
 
   task :load_seeds, :roles => :app do
