@@ -68,17 +68,17 @@ namespace :deploy do
   #  run "cp #{shared_path}/config/database.yml #{latest_release}/config/"
   #end
 
-  task :cold do       # Overriding the default deploy:cold
-    system 'cap deploy:update_code'
-    system 'cap deploy:db:create'
-    system 'cap deploy:db:schema:load'
-    system 'cap deploy:db:seed'
+#  task :cold do       # Overriding the default deploy:cold
+#    system 'cap deploy:update_code'
+#    system 'cap deploy:db:create'
+#    system 'cap deploy:db:schema:load'
+#    system 'cap deploy:db:seed'
     #system 'cap deploy:assets:precompile'
     
     #system 'cap deploy:custom:setup'
     #system 'cap deploy:whenever:update_crontab'
-    start
-  end
+#    start
+#  end
 
   task :say_hi, :roles => :app do
     puts "JUST SAYING HI"

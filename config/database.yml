@@ -23,7 +23,7 @@ production:
   encoding: unicode
   schema_search_path: "public,postgis"
   script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
-  database: testcap_prod
+  database: testcap_proddy
   pool: 5
   username: real_estate
   password: pleh99
